@@ -1,0 +1,99 @@
+@import "./components/header.scss";
+@import "./components/searchbar.scss";
+@import "./components/list.scss";
+@import "./components/chat.scss";
+@import "./form.scss";
+@import "./components/newChat.scss";
+@import "./components/profile.scss";
+
+body {
+    height: 100%;
+}
+
+.outer {
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.6;
+}
+
+.loader.chat {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #67cf53;
+    width: 30px;
+    height: 30px;
+    -webkit-animation: spin 2s linear infinite;
+
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.none {
+    background: url("../public/background2.jpg") no-repeat #f8f9fb;
+    width: 65vw;
+}
+
+.listcontainer {
+    width: 35vw;
+    border-right: 1px solid #e5e6e6;
+    height: 100vh;
+    position: relative;
+
+    .searchContainer {
+        background: #f6f6f6;
+        border-bottom: 1px solid #e5e6e6;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #b1afa7;
+}

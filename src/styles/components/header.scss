@@ -1,0 +1,71 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    align-items: center;
+    background-color: #ededed;
+    position: relative;
+}
+
+.header.list {
+    height: 60px;
+    cursor: default;
+
+    img {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+    }
+
+    .profilepic {
+        flex: 3;
+    }
+
+    .icons {
+        justify-content: space-evenly;
+        margin-left: 30px;
+        display: flex;
+        color: #919191;
+        flex-direction: row;
+        width: 150px;
+
+        .icon {
+            padding: 5px;
+            cursor: pointer;
+        }
+    }
+}
+
+.header.chat {
+    .profilepic {
+        width: 40px;
+        height: 40px;
+        margin-left: 15px;
+    }
+
+    img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+    }
+
+    .icons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex: 1;
+        color: #919191;
+    }
+
+    .text {
+        margin-left: 10px;
+        height: 35px;
+        flex: 6;
+    }
+
+    .online {
+        font-size: 0.7em;
+        margin-top: 2px;
+        color: #636363;
+    }
+}

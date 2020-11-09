@@ -1,0 +1,66 @@
+.newchat {
+    .usersList {
+        overflow-y: auto;
+        height: 520px;
+    }
+
+    .chatheader {
+        height: 100px;
+        background: #53c0a5;
+
+
+        .back {
+            padding-top: 60px;
+            display: flex;
+            flex-direction: row;
+            padding-left: 30px;
+            color: white;
+
+            .text {
+                margin-left: 20px;
+                font-size: 1.2em;
+            }
+        }
+    }
+
+    .user {
+        display: flex;
+        padding-left: 15px;
+        flex-direction: row;
+        border-top: 1px solid #ededed;
+        height: 80px;
+
+        &:hover {
+            background-color: #f5f5f5;
+        }
+
+        .text {
+            display: flex;
+            flex-direction: column;
+            margin-left: 20px;
+            margin-top: 15px;
+            font-size: 1em;
+
+            .bio {
+                font-size: 0.95em;
+                margin-top: 2px;
+                color: #6f6f6f;
+            }
+        }
+
+        .profilepic {
+            align-self: center;
+        }
+
+        img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+        }
+
+    }
+}
+
+.userContainer {
+    cursor: pointer;
+}
