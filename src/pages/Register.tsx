@@ -4,6 +4,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import { REGSITER } from "../gql";
 import whatsapp from "../public/whatsapp.webp";
 import Loader from "../components/loader";
+import IsMobile from "../components/isMobile";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -34,6 +35,8 @@ const Register = () => {
       return setError(
         "Username should be more than 3 characters and less than 16 characters."
       );
+    } else if (username.indexOf(" ") >= 0) {
+      return setError("Username is invalid.");
     } else if (password.length < 6) {
       return setError("Password too short.");
     } else if (email.length < 1) {
@@ -51,9 +54,7 @@ const Register = () => {
   return (
     <>
       {loading && <Loader />}
-      <div className="mobile">
-        <h1>Site can only be viewed on laptop or desktop</h1>
-      </div>
+      <IsMobile />
       <div className="register">
         <img src={whatsapp} width={100} alt="whatsapp-icon" height={100} />
 
@@ -115,7 +116,7 @@ const Register = () => {
           </div>
           <div className="input">
             <input
-              placeholder="About"
+              placeholder="Bio"
               onChange={(e) => setBio(e.target.value)}
               value={bio}
             />

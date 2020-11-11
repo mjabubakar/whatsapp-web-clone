@@ -45,15 +45,14 @@ const Container: React.FC = () => {
         }
         setPrev("");
         refetch();
-      },
+      }, 
     });
   }, [data, subscribeToMore, refetch]);
   const { friendSearch, newChat, profile } = useMyContext();
   return (
     <div className="container">
-      {state && loading ? (
-        <Loader />
-      ) : newChat ? (
+      {state && loading && <Loader />}
+      { newChat ? (
         <div className="listcontainer">
           {/* @ts-ignore */}
           <NewChat users={usersQuery.data} />
@@ -120,7 +119,7 @@ const Container: React.FC = () => {
       )}
 
       {displayChat ? (
-        <div style={{ width: "65vw" }}>
+        <div style={{ width: "65vw", height: "100vh" }}>
           <ChatHeader />
           <Chat />
         </div>

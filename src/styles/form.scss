@@ -60,19 +60,3 @@
         cursor: pointer;
     }
 }
-
-
-@media (max-width: 1000px) {
-
-    .register,
-    .login {
-        display: none;
-    }
-}
-
-@media (min-width: 1000px) {
-
-    .mobile {
-        display: none;
-    }
-}

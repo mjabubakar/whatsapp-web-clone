@@ -1,14 +1,14 @@
 .header {
     display: flex;
     flex-direction: row;
-    height: 60px;
+    height: 8vh;
     align-items: center;
     background-color: #ededed;
     position: relative;
 }
 
 .header.list {
-    height: 60px;
+    height: 8vh;
     cursor: default;
 
     img {

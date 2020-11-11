@@ -138,6 +138,7 @@ const Messages: React.FC<Iprops> = (props) => {
                       ) : (
                         <div style={{}}>{days(parseInt(data.time))}</div>
                       )}
+                      <div ref={messagesEndRef}></div>
                     </div>
                   </div>
                   <br />
@@ -145,7 +146,6 @@ const Messages: React.FC<Iprops> = (props) => {
               </div>
             );
           })}
-        <div ref={messagesEndRef}></div>
       </div>
     </>
   );

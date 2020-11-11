@@ -14,7 +14,7 @@ import { onError } from "apollo-link-error";
 
 const errorLink = onError(({ graphQLErrors, networkError, response }) => {
   if (graphQLErrors)
-    graphQLErrors.forEach(({ message, locations, path }) => {
+    graphQLErrors.forEach(({ message }) => {
       if (message.includes("Not authenticated")) {
         localStorage.removeItem("token");
         window.location.reload();
@@ -29,11 +29,11 @@ const errorLink = onError(({ graphQLErrors, networkError, response }) => {
 });
 
 const uploadLink = createUploadLink({
-  uri: "http://localhost:3000/graphql",
+  uri: "<URL>/graphql",
 });
 
 let httpLink = new HttpLink({
-  uri: "http://localhost:3000/",
+  uri: "<URL>/graphql",
 });
 
 const token = localStorage.getItem("token");
@@ -50,7 +50,7 @@ const authLink = setContext(async (_, { headers }) => {
 //@ts-ignore
 httpLink = errorLink.concat(authLink.concat(uploadLink).concat(httpLink));
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:3000/graphql`,
+  uri: `wss://<URL>/graphql`,
   options: {
     reconnect: true,
     connectionParams: {

@@ -97,3 +97,32 @@ body {
 ::-webkit-scrollbar-thumb {
     background: #b1afa7;
 }
+
+@media (max-height: 1000px) {
+    body {
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 1000px) {
+
+    .container,
+    .register,
+    .login {
+        display: none;
+    }
+
+    .isMobile {
+        text-align: center;
+        height: 85vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 1000px) {
+    .isMobile {
+        display: none;
+    }
+}

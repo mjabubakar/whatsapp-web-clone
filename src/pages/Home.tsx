@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext, useState, createContext } from "react";
 import Container from "../components/container";
-import { isMobile } from "react-device-detect";
+import IsMobile from "../components/isMobile";
 
 type ContextType = {
   friendSearch: string;
@@ -91,11 +91,12 @@ export const Provider = ({ children }: Props) => {
 export const useMyContext = () => useContext(Context);
 
 const Home: React.FC = () => {
-  if (isMobile) {
-    return <div> This content is unavailable on mobile</div>;
-  }
-
-  return <Provider>{isMobile ? <div>Hey</div> : <Container />} </Provider>;
+  return (
+    <Provider>
+      <IsMobile />
+      <Container />
+    </Provider>
+  );
 };
 
 export default Home;

@@ -4,11 +4,12 @@
     .sendmessage {
         padding-bottom: 0;
         background: #f0f0f0;
-        height: 50px;
+        height: 9vh;
         display: flex;
         flex-direction: row;
         color: #919191;
         align-items: center;
+        bottom: 0;
 
         input {
             width: 100%;
@@ -23,7 +24,7 @@
 
 .messages {
     background-image: url(../../public/background.png);
-    height: 550px;
+    height: 82vh;
     overflow-y: auto;
     padding-left: 50px;
     padding-right: 50px;
