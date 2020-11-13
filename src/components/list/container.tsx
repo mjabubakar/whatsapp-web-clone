@@ -1,5 +1,6 @@
 import React from "react";
 import { Friend } from "../../types";
+import { convertToTime } from "../chat/messages";
 
 interface Props {
   friend: Friend;
@@ -43,7 +44,7 @@ const List: React.FC<Props> = ({ friend, current, prev }: Props) => {
           }}
           className="lastmsgTime"
         >
-          {friend.lastmsgTime}
+          {convertToTime(parseInt(friend.lastmsgTime))}
         </div>
         <>
           <div className="messagecount">

@@ -1,6 +1,7 @@
 import React from "react";
 import { Cached, Chat, MoreVert } from "@material-ui/icons";
 import { useMyContext } from "../../pages/Home";
+import OnClickOutside from "./onclick";
 
 interface Props {
   profilepic: any;
@@ -22,22 +23,24 @@ const Header: React.FC<Props> = ({ profilepic }: Props) => {
         </div>
       )}
       {listOptions && (
-        <div className="listoptions">
-          <div className="items">New group</div>
-          <div className="items">Create room</div>
-          <div className="items">Profile</div>
-          <div className="items">Archived</div>
-          <div className="items">Settings</div>
-          <div
-            style={{ cursor: "pointer" }}
-            onClick={() => {
-              localStorage.removeItem("token");
-              window.location.reload();
-            }}
-          >
-            Logout
+        <OnClickOutside>
+          <div className="listoptions">
+            <div className="items">New group</div>
+            <div className="items">Create room</div>
+            <div className="items">Profile</div>
+            <div className="items">Archived</div>
+            <div className="items">Settings</div>
+            <div
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                localStorage.removeItem("token");
+                window.location.reload();
+              }}
+            >
+              Logout
+            </div>
           </div>
-        </div>
+        </OnClickOutside>
       )}
       <div className="icons">
         <div

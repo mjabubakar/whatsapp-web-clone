@@ -6,28 +6,27 @@ import { useMyContext } from "../../pages/Home";
 interface Iprops {
   data: any;
 }
+export const convertToTime = (createdAt: number) => {
+  const date = new Date(createdAt);
+  let hours: any = date.getHours();
+  let time = "AM";
+  let minutes: any = date.getMinutes();
+
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+
+  if (hours > 12) {
+    hours = hours - 12;
+    time = "PM";
+  } else if (hours < 1) {
+    hours = "12";
+    time = "AM";
+  }
+
+  return hours + ":" + minutes + " " + time;
+};
 const Messages: React.FC<Iprops> = (props) => {
-  const convertToTime = (createdAt: number) => {
-    const date = new Date(createdAt);
-    let hours: any = date.getHours();
-    let time = "AM";
-    let minutes: any = date.getMinutes();
-
-    if (minutes < 10) {
-      minutes = "0" + minutes;
-    }
-
-    if (hours > 12) {
-      hours = hours - 12;
-      time = "PM";
-    } else if (hours < 1) {
-      hours = "12";
-      time = "AM";
-    }
-
-    return hours + ":" + minutes + " " + time;
-  };
-
   function days(t: number) {
     const date = new Date(t);
     const day = date.getDate();
@@ -94,7 +93,6 @@ const Messages: React.FC<Iprops> = (props) => {
   }, [setcount]);
   return (
     <>
-      {props.data.error && <div></div>}
       <div className="messages">
         {props.data.data &&
           //@ts-ignore

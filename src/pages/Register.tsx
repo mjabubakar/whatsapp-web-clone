@@ -35,6 +35,8 @@ const Register = () => {
       return setError(
         "Username should be more than 3 characters and less than 16 characters."
       );
+    } else if (bio.length > 15) {
+      return setError("Bio too long");
     } else if (username.indexOf(" ") >= 0) {
       return setError("Username is invalid.");
     } else if (password.length < 6) {
@@ -117,6 +119,9 @@ const Register = () => {
           <div className="input">
             <input
               placeholder="Bio"
+              style={{
+                border: myError.includes("Bio") ? "1px solid red" : "",
+              }}
               onChange={(e) => setBio(e.target.value)}
               value={bio}
             />

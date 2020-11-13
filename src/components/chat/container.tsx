@@ -5,6 +5,7 @@ import { Messages } from "../../types";
 import { MESSAGES, SEND_MESSAGE } from "../../gql";
 import { AttachFile, EmojiEmotions, MicNoneSharp } from "@material-ui/icons";
 import { useMyContext } from "../../pages/Home";
+import Loader from "../loader";
 
 const Chat: React.FC = () => {
   const { id } = useMyContext();
@@ -27,6 +28,7 @@ const Chat: React.FC = () => {
 
   return (
     <div className="chat">
+      {data.loading && !data.data && <Loader />}
       <MessagesContainer data={data} />
       <div className="sendmessage">
         <div style={{ width: "5%", textAlign: "right" }}>

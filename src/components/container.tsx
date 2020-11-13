@@ -14,10 +14,7 @@ import Profile from "./profile";
 import Loader from "./loader";
 
 const Container: React.FC = () => {
-  const { subscribeToMore, refetch, data, loading } = useQuery<Friends>(
-    GET_FRIENDS
-  );
-  const [state, setState] = useState(true);
+  const { subscribeToMore, refetch, data } = useQuery<Friends>(GET_FRIENDS);
   const usersQuery = useQuery<Users>(USERS);
   const profilepic = useQuery<userDetails>(DETAILS).data?.userDetails
     .profilepic;
@@ -32,10 +29,6 @@ const Container: React.FC = () => {
   const [prev, setPrev] = useState("");
 
   useEffect(() => {
-    setState(false);
-  }, [data]);
-
-  useEffect(() => {
     subscribeToMore({
       document: FRIENDS_UPDATE,
       //@ts-ignore
@@ -45,88 +38,96 @@ const Container: React.FC = () => {
         }
         setPrev("");
         refetch();
-      }, 
+      },
     });
   }, [data, subscribeToMore, refetch]);
   const { friendSearch, newChat, profile } = useMyContext();
   return (
-    <div className="container">
-      {state && loading && <Loader />}
-      { newChat ? (
-        <div className="listcontainer">
-          {/* @ts-ignore */}
-          <NewChat users={usersQuery.data} />
-        </div>
+    <>
+      {usersQuery.loading ? (
+        <Loader />
       ) : (
-        <>
-          {profile ? (
-            <div style={{ background: "#ededed" }} className="listcontainer">
-              <Profile pic={profilepic || ""} />
+        <div className="container">
+          {newChat ? (
+            <div className="listcontainer">
+              {/* @ts-ignore */}
+              <NewChat users={usersQuery.data} />
             </div>
           ) : (
-            <div className="listcontainer">
-              <ListHeader profilepic={profilepic} />
-              <div className="searchContainer">
-                <SearchBar component="friends" />
-              </div>
-              <div className="friends">
-                {data?.friends.map((friend, id) => {
-                  return (
-                    <div
-                      className="friend"
-                      onClick={() => {
-                        setDisplayChat(true);
-                        setPrev(current.username);
-                        setCurrent({
-                          username: friend.username,
-                          online: friend.online,
-                          profilepic: friend.profilepic,
-                        });
-                        setId(friend.conversationId);
-                        refetch();
-                      }}
-                      key={id}
-                    >
-                      {friendSearch ? (
-                        <>
-                          {friend.username
-                            .toLowerCase()
-                            .includes(friendSearch.toLowerCase()) &&
+            <>
+              {profile ? (
+                <div
+                  style={{ background: "#ededed" }}
+                  className="listcontainer"
+                >
+                  <Profile pic={profilepic || ""} />
+                </div>
+              ) : (
+                <div className="listcontainer">
+                  <ListHeader profilepic={profilepic} />
+                  <div className="searchContainer">
+                    <SearchBar component="friends" />
+                  </div>
+                  <div className="friends">
+                    {data?.friends.map((friend, id) => {
+                      return (
+                        <div
+                          className="friend"
+                          onClick={() => {
+                            setDisplayChat(true);
+                            setPrev(current.username);
+                            setCurrent({
+                              username: friend.username,
+                              online: friend.online,
+                              profilepic: friend.profilepic,
+                            });
+                            setId(friend.conversationId);
+                            refetch();
+                          }}
+                          key={id}
+                        >
+                          {friendSearch ? (
+                            <>
+                              {friend.username
+                                .toLowerCase()
+                                .includes(friendSearch.toLowerCase()) &&
+                                friend.lastmessage !== "" && (
+                                  <List
+                                    friend={friend}
+                                    current={current.username}
+                                    prev={prev}
+                                  />
+                                )}
+                            </>
+                          ) : (
                             friend.lastmessage !== "" && (
                               <List
                                 friend={friend}
                                 current={current.username}
                                 prev={prev}
                               />
-                            )}
-                        </>
-                      ) : (
-                        friend.lastmessage !== "" && (
-                          <List
-                            friend={friend}
-                            current={current.username}
-                            prev={prev}
-                          />
-                        )
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+                            )
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </>
           )}
-        </>
-      )}
 
-      {displayChat ? (
-        <div style={{ width: "65vw", height: "100vh" }}>
-          <ChatHeader />
-          <Chat />
+          {displayChat ? (
+            <div style={{ width: "65vw", height: "100vh" }}>
+              <ChatHeader />
+              <Chat />
+            </div>
+          ) : (
+            <div className="none"></div>
+          )}
         </div>
-      ) : (
-        <div className="none"></div>
       )}
-    </div>
+    </>
   );
 };
 
