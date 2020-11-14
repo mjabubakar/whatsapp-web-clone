@@ -91,7 +91,7 @@ const Container: React.FC = () => {
                               {friend.username
                                 .toLowerCase()
                                 .includes(friendSearch.toLowerCase()) &&
-                                friend.lastmessage !== "" && (
+                                friend.lastmessage !== null && (
                                   <List
                                     friend={friend}
                                     current={current.username}
@@ -100,7 +100,7 @@ const Container: React.FC = () => {
                                 )}
                             </>
                           ) : (
-                            friend.lastmessage !== "" && (
+                            friend.lastmessage !== null && (
                               <List
                                 friend={friend}
                                 current={current.username}

@@ -1,5 +1,5 @@
 .chat {
-    position: relative;
+    width: 65vw;
 
     .sendmessage {
         padding-bottom: 0;
@@ -24,7 +24,7 @@
 
 .messages {
     background-image: url(../../public/background.png);
-    height: 82vh;
+    height: 80vh;
     overflow-y: auto;
     padding-left: 50px;
     padding-right: 50px;

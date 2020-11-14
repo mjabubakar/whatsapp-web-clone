@@ -27,7 +27,7 @@ const Chat: React.FC = () => {
   const { setShow } = useMyContext();
 
   return (
-    <div className="chat">
+    <div style={{ position: "fixed" }} className="chat">
       {data.loading && !data.data && <Loader />}
       <MessagesContainer data={data} />
       <div className="sendmessage">
