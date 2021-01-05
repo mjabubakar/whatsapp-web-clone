@@ -29,11 +29,11 @@ const errorLink = onError(({ graphQLErrors, networkError, response }) => {
 });
 
 const uploadLink = createUploadLink({
-  uri: "<URL>/graphql",
+  uri: "URL",
 });
 
 let httpLink = new HttpLink({
-  uri: "<URL>/graphql",
+  uri: "URL",
 });
 
 const token = localStorage.getItem("token");
@@ -50,7 +50,7 @@ const authLink = setContext(async (_, { headers }) => {
 //@ts-ignore
 httpLink = errorLink.concat(authLink.concat(uploadLink).concat(httpLink));
 const wsLink = new WebSocketLink({
-  uri: `<URL>/graphql`,
+  uri: `URL`,
   options: {
     reconnect: true,
     connectionParams: {

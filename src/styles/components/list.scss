@@ -78,12 +78,14 @@
     color: #636363;
     overflow: hidden;
     display: -webkit-box;
+    word-break: break-all;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }
 
 .friends {
     overflow-y: auto;
+    overflow-x: hidden;
     height: 550px;
 
     ::-webkit-scrollbar {
